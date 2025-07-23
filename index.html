@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Sweetu 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to top right, #ffdee9, #b5fffc);
+      font-family: 'Quicksand', sans-serif;
+      color: #333;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 90%;
+    }
+
+    .gift-box {
+      width: 120px;
+      height: 120px;
+      background: url('https://files.catbox.moe/e0ktcm.png') no-repeat center center;
+      background-size: contain;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-box:active {
+      transform: scale(1.05);
+    }
+
+    .message {
+      display: none;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .next-btn {
+      display: none;
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #ff8eb9;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+
+    .next-btn:hover {
+      background-color: #ff69a0;
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 3s ease-out forwards;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      to {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="gift" class="gift-box"></div>
+    <div id="msg" class="message"></div>
+    <button id="next" class="next-btn" onclick="window.location.href='why.html'">Why I love you?</button>
+  </div>
+  <div class="hearts" id="hearts"></div>
+
+  <audio id="bgm">
+    <source src="https://files.catbox.moe/1c1p5a.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const gift = document.getElementById('gift');
+    const msg = document.getElementById('msg');
+    const bgm = document.getElementById('bgm');
+    const hearts = document.getElementById('hearts');
+    const next = document.getElementById('next');
+
+    const message = `This is for you, Sweetu... 💖\n\nI know we may not have forever, but we have now — and I want every second to feel magical for you.\n\nYou said, \"Kabhi mat jaana...\" — and even if life pulls us apart, know this:\n\nI will never leave your heart.\nYou’ll always have me there.\n\nTu hi meri pehli daastan thi... aur meri aakhri khwahish bhi. 💌\n\n– Prem`;
+
+    let index = 0;
+
+    function typeText() {
+      if (index < message.length) {
+        msg.textContent += message.charAt(index);
+        index++;
+        setTimeout(typeText, 40);
+      } else {
+        next.style.display = 'inline-block';
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      hearts.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+
+    function explodeLove() {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(createHeart, i * 100);
+      }
+    }
+
+    gift.addEventListener('click', () => {
+      gift.style.display = 'none';
+      msg.style.display = 'block';
+      bgm.play();
+      explodeLove();
+      typeText();
+    });
+  </script>
+</body>
+</html>

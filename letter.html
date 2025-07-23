@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter for my sweetu ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: url('https://files.catbox.moe/ex64os.jpg') no-repeat center center fixed;
+      background-size: auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    #envelope {
+      width: 400px;
+      height: 400px;
+      background: url('https://files.catbox.moe/1np2fd.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    #letter {
+      display: none;
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      font-size: 1.1rem;
+      color: #333;
+      position: relative;
+      animation: fadeIn 1s ease-in-out;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #pressBtn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff89b0;
+      border: none;
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #finalContent {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      animation: fadeSparkle 1.5s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    #finalContent img {
+      width: 80%;
+      max-width: 300px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      animation: glowPulse 3s infinite ease-in-out;
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 15px rgba(255, 192, 203, 0.4); }
+      50% { box-shadow: 0 0 25px rgba(255, 105, 180, 0.8); }
+      100% { box-shadow: 0 0 15px rgba(255, 192, 203, 0.4); }
+    }
+
+    .shayari {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #5b0060;
+      margin: 15px auto;
+      max-width: 400px;
+      background: rgba(255,255,255,0.85);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    #finalLove {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #ff4c91;
+      margin-top: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeSparkle {
+      0% { opacity: 0; transform: scale(0.95); filter: brightness(0.8); }
+      50% { filter: brightness(1.2); }
+      100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgm" src="https://files.catbox.moe/8ztl8r.mp3" preload="loop"></audio>
+
+  <div id="envelope"></div>
+
+  <div id="letter"></div>
+
+  <button id="pressBtn">A little surprise.</button>
+
+  <div id="finalContent">
+    <img src="https://files.catbox.moe/unouz4.png" alt="memory" />
+
+    <div class="shayari">Kabhi tere baalon mein chaand chhupa milta hai,<br />Kabhi teri aankhon mein saara aasman chamak jaata hai.</div>
+
+    <div class="shayari">Teri muskurahat meri duniya hai,<br />Jise dekh kar har gham gum ho jaata hai.</div>
+
+    <div class="shayari">Tu ho toh raatein chandni si lagti hain,<br />Aur subah teri awaaz se sajti hai.</div>
+
+    <div class="shayari">Tujh mein hi basi hai meri har ek khushi,<br />Teri hansi se roshan meri zindagi.</div>
+
+    <div class="shayari">Chhoo ke tujhe mehka hai khwaabon ka sheher,<br />Tu hi toh hai mera pyaar, meri rehguzar.</div>
+
+    <div class="shayari">Mere har khayal mein tu mehka karti hai,<br />Mere har khwab mein tu behtaab si lagti hai.</div>
+
+    <div class="shayari">Tere saath ka har pal ek geet ban jaata hai,<br />Aur har geet sirf tera naam gaa jaata hai.</div>
+
+    <div id="finalLove">I love you — now, always, and in every version of forever. 💖</div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("letter");
+    const pressBtn = document.getElementById("pressBtn");
+    const finalContent = document.getElementById("finalContent");
+    const bgm = document.getElementById("bgm");
+
+    const message = `I had promised you ki I'll be there through your highs and lows...
+I'll be there for you at your worst...
+I'll be there for you when you want a hug...
+
+I'll always be there for you —
+my snowflake,
+my sweetu,
+my bestuu,
+my babyy,
+my jaanu,
+my srutu,
+my everything forever.
+
+I will always keep loving you no matter what,
+and I just want you to be happy FOREVER...
+
+...and even if you're reading this one last time...
+just remember...
+
+I LOVE YOU ♡`;
+
+    envelope.addEventListener("click", () => {
+      envelope.style.display = "none";
+      letter.style.display = "block";
+      pressBtn.style.display = "inline-block";
+      typeMessage(message, 0);
+      bgm.play();
+    });
+
+    function typeMessage(msg, i) {
+      if (i < msg.length) {
+        letter.innerHTML += msg.charAt(i);
+        setTimeout(() => typeMessage(msg, i + 1), 40);
+      }
+    }
+
+    pressBtn.addEventListener("click", () => {
+      finalContent.style.display = "block";
+    });
+  </script>
+</body>
+</html>

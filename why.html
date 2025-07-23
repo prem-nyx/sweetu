@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why I Love You 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: url('https://files.catbox.moe/rvly26.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      margin: 30px 0;
+      color: #ffffff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+
+    #startBtn {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      background-color: #ff89b0;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    #startBtn:hover {
+      background-color: #ff69a0;
+    }
+
+    .reasons-container {
+      margin-top: 30px;
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .card {
+      width: 140px;
+      height: 140px;
+      perspective: 1000px;
+    }
+
+    .inner-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .card.flipped .inner-card {
+      transform: rotateY(180deg);
+    }
+
+    .card:hover .inner-card {
+      transform: scale(1.05);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #ff89b0;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .card-back {
+      background-color: #fff0f5;
+      transform: rotateY(180deg);
+    }
+
+    #finalMessage {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      font-family: 'Great Vibes', cursive;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+      display: none;
+      text-align: center;
+    }
+
+    #oneMoreBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff89b0;
+      border: none;
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .sakura {
+      position: fixed;
+      top: -50px;
+      background: url('https://files.catbox.moe/fex6ra.png') no-repeat center center;
+      background-size: contain;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Why I Love You 💗</h1>
+  <button id="startBtn">Show Me The Reasons</button>
+
+  <div class="reasons-container" id="reasons"></div>
+
+  <div id="finalMessage">You are my forever. 💖</div>
+  <button id="oneMoreBtn" onclick="location.href='letter.html'">One more thing...</button>
+
+  <audio id="bgm" loop>
+    <source src="https://files.catbox.moe/b12qq6.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="chime">
+    <source src="https://files.catbox.moe/3rd61i.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const startBtn = document.getElementById("startBtn");
+    const reasonsContainer = document.getElementById("reasons");
+    const finalMessage = document.getElementById("finalMessage");
+    const oneMoreBtn = document.getElementById("oneMoreBtn");
+    const chime = document.getElementById("chime");
+
+    const reasons = [ "Your sleepy voice 😴", "Your love 🥹", "Your kindness 😭", "Your care 🥺",
+      "The way you support me", "Your innocent smile 😊", "The way you get jealous 😘",
+      "Your texts at midnight", "How you call me 'pagluuu' so sweetly", "Your hugs, even virtual ones 🤗",
+      "That time we watched anime & movie together", "Your cute anger", "How you say 'Mujhe chodd ke mat jana' 😭",
+      "Your laughter 💕", "You calm my storms 🌧️", "You're my sunshine ☀️",
+      "When you call me yours", "Your honesty", "You make me feel special",
+      "You're always in my heart & mind", "Even when you're busy, you care", "You're a walking poem 📜",
+      "Your love is pure", "You make time feel like a dream",
+      "You made me believe in love", "You melt my heart like Dairy Milk Fruit & Nut 🍫",
+      "Because you're Snowflake ❄️", "Your eyes, your voice, your soul", "Your kiss", "Your hands overlapping mine",
+      "You're my favorite notification 📱", "You inspire me daily",
+      "You’re beautiful inside and out", "Because I just do… and always will", "You complete my story",
+      "You gave me a reason to smile again", "You're my safe place",
+      "You say 'Sweetu' like magic ✨", "I want to hug you forever",
+      "You’re chaos and comfort all in one", "You're my best decision",
+      "Because you made me a better person", "You're more than a dream",
+      "You're my beginning and end", "You’re my soft place to fall",
+      "You're the one I want to code for", "You gave my heart a home 🏡",
+      "Because you’re my always...", "I feel really really bad when...", "Last reason for loving you is..."
+    ];
+
+    const messages = [
+      "That is the most beautiful thing I've ever heard...", "That is the most beautiful thing I've felt...", "You are really toooooo much kind...",
+      "When you take care of me it just feels too good and amazing...", "Makes my all worries go away...", "That is the most beautiful thing I've ever seen...",
+      "Makes me feel like you want me really bad...", "That is the only reason I feel like staying up whole night...", "It makes my heart melt completely...",
+      "Makes my heart do cartwheels...", "It is my one of the most fav memory...", "Makes me want to kiss your cheeks...",
+      "It just pierces through my heart... And dw... mein teko chod ke kabhi kahi nhi jaa rha...", "Makes my heart feel peace...",
+      "And takes care of me more than anyone else...", "You're my subah ka sabse pehla khayal... My sunshine who's protecting me from darkness...",
+      "My heart just goes crazy...", "Makes me feel safe and non-judgy...", "You really really make me feel the best person alive...",
+      "Always & FOREVER.", "That brings me tears in my eyes...", "Completely beautiful and stunning which doesn't have enough words to describe the real beauty",
+      "More pure than anything ever existed...", "IDK where time flies by when I'm with you 😭", "Love that doesn't need any conditions to be...",
+      "By the warmth of your heart", "My Snowflake... As beautiful and pure as snow...", "They are the closest thing to heaven on earth...",
+      "That is literally heaven unleashed on earth...", "That's just beyond heaven.. I have no words to describe it...", "The only notification that makes me smile",
+      "And motivates me to become a better person", "Really... Your body is just as beautiful as your personality...", "Love you unconditionally",
+      "Without you there is nothing good or interesting in this world...", "Without you I have no emotions.. Just loneliness...", "Where I can stay without any fears",
+      "And that magic makes my heart melt just like a snowflake", "And never want to let you get away from me", "You're just my messy srutu.. whom I love really too much",
+      "The best thing ever happened to me in my life. I'm glad I had msged you on tht night.. Our first talk...",
+      "Better than who I was and you're still making me better day by day", "You're my forever peaceful & beautiful dream",
+      "Without Srutu there is no Pooorem", "And I want to fall more deeper into you.. I want to love you more than I do now...",
+      "You're the sole reason this all coding seems fun", "And I can never thank you enough and trust me.. You're the only one who reesides in my heart...",
+      "forever love for whom I'd do anything to keep her happy", "I hurt you by mistake.. it just feels like I want to tear out my heart when I hurt you..."
+    ];
+
+    let flippedCount = 0;
+
+    startBtn.addEventListener("click", () => {
+      const bgm = document.getElementById("bgm");
+      bgm.play().catch((e) => {
+      console.log("Playback prevented 😔", e);
+    });
+
+  startBtn.style.display = "none";
+  reasonsContainer.style.display = "flex";
+  loadReasons();
+});
+
+
+    function loadReasons() {
+      reasons.forEach((reason, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const inner = document.createElement("div");
+        inner.className = "inner-card";
+
+        const front = document.createElement("div");
+        front.className = "card-face card-front";
+        front.innerText = reason;
+
+        const back = document.createElement("div");
+        back.className = "card-face card-back";
+        back.innerText = messages[index] || "There's so much more that I'm out of words"; //add text here
+
+        inner.appendChild(front);
+        inner.appendChild(back);
+        card.appendChild(inner);
+
+        card.addEventListener("click", () => {
+          if (!card.classList.contains("flipped")) {
+            card.classList.add("flipped");
+            chime.play();
+            flippedCount++;
+            if (flippedCount === reasons.length) {
+              setTimeout(() => {
+                finalMessage.style.display = "block";
+                oneMoreBtn.style.display = "inline-block";
+              }, 1000);
+            }
+          }
+        });
+
+        reasonsContainer.appendChild(card);
+      });
+    }
+
+    // Sakura Petal Generator 🌸
+    function createPetal() {
+      const petal = document.createElement("div");
+      petal.classList.add("sakura");
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = 5 + Math.random() * 5 + "s";
+      const size = 20 + Math.random() * 20;
+      petal.style.width = size + "px";
+      petal.style.height = size + "px";
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+
+    setInterval(createPetal, 180);
+  </script>
+</body>
+</html>
